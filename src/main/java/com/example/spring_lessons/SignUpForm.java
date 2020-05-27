@@ -10,6 +10,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.example.spring_lessons.Validation.ValidGroup1;
+import com.example.spring_lessons.Validation.ValidGroup2;
+import com.example.spring_lessons.Validation.ValidGroup3;
+
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 

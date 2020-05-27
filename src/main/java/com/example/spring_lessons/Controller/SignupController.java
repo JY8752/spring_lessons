@@ -3,8 +3,8 @@ package com.example.spring_lessons.Controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.example.spring_lessons.GroupOrder;
 import com.example.spring_lessons.SignUpForm;
+import com.example.spring_lessons.Validation.GroupOrder;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
