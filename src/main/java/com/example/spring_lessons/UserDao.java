@@ -1,8 +1,6 @@
-package com.example;
+package com.example.spring_lessons;
 
 import java.util.List;
-
-import com.example.spring_lessons.User;
 
 import org.springframework.dao.DataAccessException;
 

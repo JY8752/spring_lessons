@@ -1,5 +1,7 @@
 package com.example.spring_lessons.Controller;
 
+import com.example.spring_lessons.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
