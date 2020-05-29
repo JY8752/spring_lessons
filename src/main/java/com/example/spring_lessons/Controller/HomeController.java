@@ -1,5 +1,8 @@
 package com.example.spring_lessons.Controller;
 
+import java.util.List;
+
+import com.example.spring_lessons.User;
 import com.example.spring_lessons.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +23,28 @@ public class HomeController {
         return "homeLayout";
     }
 
+    @GetMapping("/userList")
+    public String getUserList(Model model){
+
+        model.addAttribute("contents", "userList :: userList_contents");
+
+        List<User> userList = userService.selectMany();
+        model.addAttribute("userList", userList);
+
+        int count = userService.count();
+        model.addAttribute("userListCount", count);
+
+        return "homeLayout";
+    }
+
     @PostMapping("/logout")
     public String postLogout(){
         return "redirect:/login";
     }
 
+    @GetMapping("/userList/csv")
+    public String getUserListCsv(Model model){
+        return getUserList(model);
+    }
     
 }
