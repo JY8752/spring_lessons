@@ -3,10 +3,10 @@ package com.example.spring_lessons.Controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.example.spring_lessons.SignUpForm;
-import com.example.spring_lessons.User;
-import com.example.spring_lessons.UserService;
 import com.example.spring_lessons.Validation.GroupOrder;
+import com.example.spring_lessons.entity.User;
+import com.example.spring_lessons.form.SignUpForm;
+import com.example.spring_lessons.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

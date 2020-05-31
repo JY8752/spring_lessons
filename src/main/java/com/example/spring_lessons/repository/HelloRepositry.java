@@ -1,4 +1,4 @@
-package com.example.spring_lessons;
+package com.example.spring_lessons.repository;
 
 import java.util.Map;
 

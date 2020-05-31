@@ -1,6 +1,8 @@
-package com.example.spring_lessons;
+package com.example.spring_lessons.repository.jdbc;
 
 import java.util.List;
+
+import com.example.spring_lessons.entity.User;
 
 import org.springframework.dao.DataAccessException;
 

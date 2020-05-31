@@ -1,9 +1,11 @@
-package com.example.spring_lessons;
+package com.example.spring_lessons.repository.jdbc;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import com.example.spring_lessons.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -104,7 +106,8 @@ public class UserDaoJdbcImpl implements UserDao{
     }
 
     public int deleteOne(String userId) throws DataAccessException {
-        return 0;
+        int rowNumber = jdbc.update("delete from m_user where user_id = ?", userId);
+        return rowNumber;
     }
 
     public void userCsvOut() throws DataAccessException {

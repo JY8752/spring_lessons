@@ -4,9 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.spring_lessons.SignUpForm;
-import com.example.spring_lessons.User;
-import com.example.spring_lessons.UserService;
+import com.example.spring_lessons.entity.User;
+import com.example.spring_lessons.form.SignUpForm;
+import com.example.spring_lessons.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,6 +95,21 @@ public class HomeController {
             model.addAttribute("result", "更新成功");
         } else{
             model.addAttribute("result", "更新失敗");
+        }
+        return getUserList(model);
+    }
+
+    @PostMapping(value="/userDetail", params = "delete")
+    public String postUserDetailDelete(@ModelAttribute SignUpForm signupForm, Model model){
+
+        System.out.println("削除ボタンの処理");
+
+        boolean result = userService.deleteOne(signupForm.getUserId());
+
+        if(result == true){
+            model.addAttribute("result", "削除成功");
+        } else {
+            model.addAttribute("result", "削除失敗");
         }
         return getUserList(model);
     }

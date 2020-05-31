@@ -1,6 +1,9 @@
-package com.example.spring_lessons;
+package com.example.spring_lessons.service;
 
 import java.util.List;
+
+import com.example.spring_lessons.entity.User;
+import com.example.spring_lessons.repository.jdbc.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +45,17 @@ public class UserService {
         if(rowNumber > 0){
             result = true;
         }
+        return result;
+    }
+
+    public boolean deleteOne(String userId){
+        int rowNumber = dao.deleteOne(userId);
+
+        boolean result = false;
+
+        if(rowNumber > 0){
+            result = true;
+        } 
         return result;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.spring_lessons;
+package com.example.spring_lessons.entity;
 
 import java.util.Date;
 
