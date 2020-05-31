@@ -6,12 +6,14 @@ import com.example.spring_lessons.entity.User;
 import com.example.spring_lessons.repository.jdbc.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
     
     @Autowired
+    @Qualifier("UserDaoJdbcImpl2")
     UserDao dao;
 
     public boolean insert(User user){
