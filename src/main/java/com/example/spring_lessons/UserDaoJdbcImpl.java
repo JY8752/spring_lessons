@@ -85,7 +85,22 @@ public class UserDaoJdbcImpl implements UserDao{
     }
 
     public int updateOne(User user) throws DataAccessException {
-        return 0;
+        int rowNumber = jdbc.update("update m_user"
+        + " set"
+        + " password = ?,"
+        + " user_name = ?,"
+        + " birthday = ?,"
+        + " age = ?,"
+        + " marrige = ?"
+        + " where user_id = ?"
+        , user.getPassword()
+        , user.getUserName()
+        , user.getBirthday()
+        , user.getAge()
+        , user.isMarrige()
+        , user.getUserId());
+
+        return rowNumber;
     }
 
     public int deleteOne(String userId) throws DataAccessException {

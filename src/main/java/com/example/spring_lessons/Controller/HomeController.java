@@ -76,6 +76,29 @@ public class HomeController {
         return "homeLayout";
     }
 
+    @PostMapping(value="/userDetail", params = "update")
+    public String postUserDetailUpdate(@ModelAttribute SignUpForm signupForm, Model model){
+
+        System.out.println("更新ボタンの処理");
+
+        User user = new User();
+        user.setUserId(signupForm.getUserId());
+        user.setPassword(signupForm.getPassword());
+        user.setUserName(signupForm.getUserName());
+        user.setBirthday(signupForm.getBirthday());
+        user.setAge(signupForm.getAge());
+        user.setMarrige(signupForm.isMarrige());
+
+        boolean result = userService.updateOne(user);
+
+        if(result == true){
+            model.addAttribute("result", "更新成功");
+        } else{
+            model.addAttribute("result", "更新失敗");
+        }
+        return getUserList(model);
+    }
+
     @PostMapping("/logout")
     public String postLogout(){
         return "redirect:/login";
