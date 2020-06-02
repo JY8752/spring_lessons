@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     
     @Autowired
-    @Qualifier("UserDaoJdbcImpl3")
+    @Qualifier("UserDaoNamedJdbcImpl")
     UserDao dao;
 
     public boolean insert(User user){
