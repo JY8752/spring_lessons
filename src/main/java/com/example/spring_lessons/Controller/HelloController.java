@@ -1,7 +1,8 @@
 package com.example.spring_lessons.Controller;
 
-import com.example.spring_lessons.Employee;
-import com.example.spring_lessons.HelloService;
+
+import com.example.spring_lessons.entity.Employee;
+import com.example.spring_lessons.service.HelloService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

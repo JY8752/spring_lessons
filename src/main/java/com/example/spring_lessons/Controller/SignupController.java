@@ -3,9 +3,12 @@ package com.example.spring_lessons.Controller;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import com.example.spring_lessons.SignUpForm;
 import com.example.spring_lessons.Validation.GroupOrder;
+import com.example.spring_lessons.entity.User;
+import com.example.spring_lessons.form.SignUpForm;
+import com.example.spring_lessons.service.UserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class SignupController {
+
+    @Autowired
+    UserService userService;
+
   
   private Map<String, String>radioMarrige;
 
@@ -48,6 +55,23 @@ public class SignupController {
 
     System.out.println(signupForm);
 
+    User user = new User();
+
+    user.setUserId(signupForm.getUserId());
+    user.setPassword(signupForm.getPassword());
+    user.setUserName(signupForm.getUserName());
+    user.setBirthday(signupForm.getBirthday());
+    user.setAge(signupForm.getAge());
+    user.setMarrige(signupForm.isMarrige());
+    user.setRole("ROLE_GENERAL");
+
+    boolean result = userService.insert(user);
+
+    if(result == true){
+        System.out.println("insert 成功");
+    } else{
+        System.out.println("insert 失敗");
+    }
     return "redirect:/login";
   }
 }
