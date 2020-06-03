@@ -14,12 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
+@Transactional
 @Service
 public class UserService {
     
     @Autowired
-    @Qualifier("UserDaoNamedJdbcImpl")
+    @Qualifier("UserDaoJdbcImpl")
     UserDao dao;
 
     public boolean insert(User user){
@@ -46,7 +47,7 @@ public class UserService {
         return dao.selectOne(userId);
     }
 
-    public boolean updateOne(User user){
+    public boolean updateOne(User user) {
         int rowNumber = dao.updateOne(user);
 
         boolean result = false;

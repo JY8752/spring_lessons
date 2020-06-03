@@ -61,7 +61,7 @@ public class UserDaoJdbcImpl implements UserDao{
         user.setMarrige((Boolean)map.get("marrige"));
         user.setRole((String)map.get("role"));
 
-        return user;     
+        return user;
     }
 
     @Override
@@ -102,6 +102,11 @@ public class UserDaoJdbcImpl implements UserDao{
         , user.isMarrige()
         , user.getUserId());
 
+        //トランザクション確認のためわざと例外を発生
+        // if(rowNumber > 0){
+        //     throw new DataAccessException("トランザクションテスト") {
+        //     };
+        // }
         return rowNumber;
     }
 
