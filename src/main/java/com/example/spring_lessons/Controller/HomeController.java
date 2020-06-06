@@ -146,5 +146,12 @@ public class HomeController {
 
         return new ResponseEntity<>(bytes, header, HttpStatus.OK);
     }
+
+    //アドミン専用画面のGET
+    @GetMapping("/admin")
+    public String getAdmin(Model model) {
+        model.addAttribute("contents", "admin :: admin_contents");
+        return "homeLayout";
+    }
     
 }
