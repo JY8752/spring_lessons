@@ -25,8 +25,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
                 .anyRequest().authenticated();
-        //CSRF対策を無効（一時的）
-        http.csrf().disable();
+                //ログイン処理
+                http
+                .formLogin()
+                .loginProcessingUrl("/login")//ログイン処理のパス
+                .loginPage("/login")//ログインページの指定
+                .failureUrl("/login")//ログイン失敗時の遷移先
+                .usernameParameter("userId")//ログインページのユーザーID
+                .passwordParameter("password")//ログインページのパスワード
+                .defaultSuccessUrl("/home", true);//ログイン成功時の遷移先
+                //CSRF対策を無効（一時的）
+                http.csrf().disable();
     }
 
     
