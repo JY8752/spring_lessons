@@ -1,6 +1,10 @@
 package com.example.spring_lessons;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,7 +13,25 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+    //データソース
+    @Autowired
+    private DataSource dataSource;
+
+    //ユーザIDとパスワードを取得するSQL
+    private static final String USER_SQL = "select"
+        + " user_id"
+        + ", password"
+        + ", true"
+        + " from m_user"
+        + " where user_id = ?";
     
+    //ユーザのロールを取得するSQL
+    private static final String ROLE_SQL = "select"
+        + " user_id"
+        + ", role"
+        + " from m_user"
+        + " where user_id = ?";
+        
     @Override
     public void configure(WebSecurity web) throws Exception {
         //静的リソースへのセキュリティー除外
@@ -37,6 +59,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 //CSRF対策を無効（一時的）
                 http.csrf().disable();
     }
-
-    
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+        auth.jdbcAuthentication()
+            .dataSource(dataSource)
+            .usersByUsernameQuery(USER_SQL)
+            .authoritiesByUsernameQuery(ROLE_SQL);
+    }
 }
