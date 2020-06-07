@@ -10,14 +10,26 @@
 </head>
 <body class="text-center">
   <h1>Login</h1>
-  <form method="post" action="/login">
-    <div class="form-group">
-      <label>ユーザーID</label>
-      <input type="text" class="form-control" placeholder="ユーザーID">
+  <form method="post" action="/login" >
+    <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+    th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+    class="text-danger">ログインエラーメッセージ</p>
+    <div class="form-group form-row clearfix">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <label>ユーザーID</label>
+            <input type="text" name="userId" class="form-control" placeholder="ユーザーID">
+        </div>
+        <div class="col-sm-3"></div>
     </div>
-    <div class="form-group">
-      <label>パスワード</label>
-      <input type="password" class="form-control" placeholder="パスワード">
+    <div class="form-group form-row clearfix">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <label>パスワード</label>
+            <input type="password" name="password" class="form-control" placeholder="パスワード">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        </div>
+        <div class="col-sm-3"></div>
     </div>
     <div class="form-group">
       <button class="btn btn-primary" type="submit">ログイン</button>

@@ -24,7 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-  implementation 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -36,6 +36,12 @@ dependencies {
   compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.17.Final'
   compile group: 'org.springframework', name: 'spring-aop', version: '5.2.6.RELEASE'
   compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.5'
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.3.0.RELEASE'
+  compile('org.springframework.security:spring-security-web')
+  compile('org.springframework.security:spring-security-config')
+  compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity5')
+
+
 }
 
 test {
