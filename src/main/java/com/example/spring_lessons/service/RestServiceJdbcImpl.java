@@ -32,14 +32,12 @@ public class RestServiceJdbcImpl implements RestService {
 
     @Override
     public List<User> selectMany() {
-        // TODO Auto-generated method stub
-        return null;
+        return dao.selectMany();
     }
 
     @Override
     public User selectOne(String userId) {
-        // TODO Auto-generated method stub
-        return null;
+        return dao.selectOne(userId);
     }
 
     @Override
