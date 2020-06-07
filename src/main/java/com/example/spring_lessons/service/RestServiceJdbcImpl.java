@@ -26,8 +26,12 @@ public class RestServiceJdbcImpl implements RestService {
 
     @Override
     public boolean insert(User user) {
-        // TODO Auto-generated method stub
-        return false;
+        int result = dao.insertOne(user);
+        if(result == 0){
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
