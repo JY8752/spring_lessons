@@ -3,16 +3,25 @@ package com.example.spring_lessons;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+    //パスワードエンコーダー
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
     //データソース
     @Autowired
     private DataSource dataSource;
@@ -56,14 +65,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .usernameParameter("userId")//ログインページのユーザーID
                 .passwordParameter("password")//ログインページのパスワード
                 .defaultSuccessUrl("/home", true);//ログイン成功時の遷移先
+                //ログアウト処理
+                http
+                    .logout()
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login");
                 //CSRF対策を無効（一時的）
-                http.csrf().disable();
+                // http.csrf().disable();
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication()
             .dataSource(dataSource)
             .usersByUsernameQuery(USER_SQL)
-            .authoritiesByUsernameQuery(ROLE_SQL);
+            .authoritiesByUsernameQuery(ROLE_SQL)
+            .passwordEncoder(passwordEncoder());
     }
 }

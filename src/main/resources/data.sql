@@ -13,7 +13,7 @@ insert into m_user(
 )
 values(
     'yamada@example.com',
-    'password',
+    '$2a$10$7WwzJtw1PUd.CzgXfNw0TOpOs2z5dVeNL0hpJ28HBZs0kzXjmPu5W',
     '山田太郎',
     '1990-01-01',
     28,
@@ -33,7 +33,7 @@ insert into m_user(
 )
 values(
     'tamura@example.com',
-    'password',
+    '$2a$10$7WwzJtw1PUd.CzgXfNw0TOpOs2z5dVeNL0hpJ28HBZs0kzXjmPu5W',
     '田村達也',
     '1986-11-015',
     31,
