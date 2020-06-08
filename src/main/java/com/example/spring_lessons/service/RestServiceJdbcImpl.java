@@ -20,8 +20,12 @@ public class RestServiceJdbcImpl implements RestService {
 
     @Override
     public boolean delete(String userId) {
-        // TODO Auto-generated method stub
-        return false;
+        int result = dao.deleteOne(userId);
+        if(result == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -46,7 +50,11 @@ public class RestServiceJdbcImpl implements RestService {
 
     @Override
     public boolean update(User user) {
-        // TODO Auto-generated method stub
-        return false;
+        int result = dao.updateOne(user);
+        if(result == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
