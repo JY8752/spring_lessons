@@ -3,7 +3,7 @@ package com.example.spring_lessons.service.mybatis;
 import java.util.List;
 
 import com.example.spring_lessons.entity.User;
-import com.example.spring_lessons.repository.mybatis.UserMapper;
+import com.example.spring_lessons.repository.mybatis.UserMapper2;
 import com.example.spring_lessons.service.RestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RestServiceMybatisImpl  implements RestService{
 
     @Autowired
-    UserMapper userMapper;
+    UserMapper2 userMapper;
 
     @Override
     public boolean insert(User user) {
