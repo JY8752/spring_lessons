@@ -29,11 +29,11 @@
             , #{marrige}
             , #{role})
     </insert>
-    <select id="selectOne" parameterType="String" resultType="com.example.spring_lessons.entity.User">
+    <select id="selectOne" parameterType="string" resultType="com.example.spring_lessons.entity.User">
         select 
-            user_id
+            user_id as userId
             , password
-            , user_name
+            , user_name as userName
             , birthday
             , age
             , marrige
